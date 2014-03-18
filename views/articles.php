@@ -119,7 +119,11 @@ $listDirn = htmlspecialchars($this->app->getUserStateFromRequest('list.direction
 		</tr>
 		</tfoot>
 		<tbody>
-		<?php foreach ($this->items as $i => $item) : ?>
+		<?php
+		require_once JPATH_ROOT . '/administrator/components/com_content/models/articles.php';
+		$ContentModelArticles = new ContentModelArticles;
+		$this->items = $ContentModelArticles->getItems();
+		foreach ($this->items as $i => $item) : ?>
 			<?php if ($item->language && JLanguageMultilang::isEnabled())
 			{
 				$tag = strlen($item->language);
