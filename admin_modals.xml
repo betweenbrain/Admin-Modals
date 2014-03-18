@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.2" type="plugin" group="system" method="upgrade">
+	<author>Matt Thomas</author>
+	<authorEmail>matt@betweenbrain.com</authorEmail>
+	<authorUrl>http://betweenbrain.com</authorUrl>
+	<copyright>(C) 2014 Matt Thomas. All rights reserved.</copyright>
+	<creationDate>March 12, 2014</creationDate>
+	<description>PLG_SYSTEM_K2_INJECTOR_DESC</description>
+	<license>GNU/GPL v2 or later</license>
+	<name>plg_admin_modals</name>
+	<version>0.1</version>
+
+	<files>
+		<filename plugin="admin_modals">admin_modals.php</filename>
+		<folder>views</folder>
+	</files>
+
+	<languages folder="languages">
+		<language tag="en-GB">en-GB/en-GB.plg_system_admin_modals.ini</language>
+	</languages>
+
+</extension>
