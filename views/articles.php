@@ -33,8 +33,8 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.framework', true);
 
 $function = $app->input->getCmd('function', 'jSelectArticle');
-$listOrder = htmlspecialchars($this->state->get('list.ordering'));
-$listDirn = htmlspecialchars($this->state->get('list.direction'));
+$listOrder = htmlspecialchars($this->app->getUserStateFromRequest('list.ordering'));
+$listDirn = htmlspecialchars($this->app->getUserStateFromRequest('list.direction'));
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=articles&layout=modal&tmpl=component&function=' . $function . '&' . JSession::getFormToken() . '=1'); ?>" method="post" name="adminForm" id="adminForm" class="form-inline">
 	<fieldset class="filter clearfix">
@@ -45,7 +45,7 @@ $listDirn = htmlspecialchars($this->state->get('list.direction'));
 				</label>
 			</div>
 			<div class="btn-group pull-left">
-				<input type="text" name="filter_search" id="filter_search" value="<?php echo htmlspecialchars($this->state->get('filter.search')); ?>" size="30" title="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" />
+				<input type="text" name="filter_search" id="filter_search" value="<?php echo htmlspecialchars($this->app->getUserStateFromRequest('filter.search')); ?>" size="30" title="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" />
 			</div>
 			<div class="btn-group pull-left">
 				<button type="submit" class="btn hasTooltip" title="<?php echo JHtml::tooltipText('JSEARCH_FILTER_SUBMIT'); ?>" data-placement="bottom">
@@ -60,29 +60,29 @@ $listDirn = htmlspecialchars($this->state->get('list.direction'));
 		<div class="filters pull-left">
 			<select name="filter_access" class="input-medium" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS'); ?></option>
-				<?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access')); ?>
+				<?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->app->getUserStateFromRequest('filter.access')); ?>
 			</select>
 
 			<select name="filter_published" class="input-medium" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED'); ?></option>
-				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true); ?>
+				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->app->getUserStateFromRequest('filter.published'), true); ?>
 			</select>
 
-			<?php if ($this->state->get('filter.forcedLanguage')) : ?>
+			<?php if ($this->app->getUserStateFromRequest('filter.forcedLanguage')) : ?>
 				<select name="filter_category_id" class="input-medium" onchange="this.form.submit()">
 					<option value=""><?php echo JText::_('JOPTION_SELECT_CATEGORY'); ?></option>
-					<?php echo JHtml::_('select.options', JHtml::_('category.options', 'com_content', array('filter.language' => array('*', $this->state->get('filter.forcedLanguage')))), 'value', 'text', $this->state->get('filter.category_id')); ?>
+					<?php echo JHtml::_('select.options', JHtml::_('category.options', 'com_content', array('filter.language' => array('*', $this->app->getUserStateFromRequest('filter.forcedLanguage')))), 'value', 'text', $this->app->getUserStateFromRequest('filter.category_id')); ?>
 				</select>
-				<input type="hidden" name="forcedLanguage" value="<?php echo htmlspecialchars($this->state->get('filter.forcedLanguage')); ?>" />
-				<input type="hidden" name="filter_language" value="<?php echo htmlspecialchars($this->state->get('filter.language')); ?>" />
+				<input type="hidden" name="forcedLanguage" value="<?php echo htmlspecialchars($this->app->getUserStateFromRequest('filter.forcedLanguage')); ?>" />
+				<input type="hidden" name="filter_language" value="<?php echo htmlspecialchars($this->app->getUserStateFromRequest('filter.language')); ?>" />
 			<?php else : ?>
 				<select name="filter_category_id" class="input-medium" onchange="this.form.submit()">
 					<option value=""><?php echo JText::_('JOPTION_SELECT_CATEGORY'); ?></option>
-					<?php echo JHtml::_('select.options', JHtml::_('category.options', 'com_content'), 'value', 'text', $this->state->get('filter.category_id')); ?>
+					<?php echo JHtml::_('select.options', JHtml::_('category.options', 'com_content'), 'value', 'text', $this->app->getUserStateFromRequest('filter.category_id')); ?>
 				</select>
 				<select name="filter_language" class="input-medium" onchange="this.form.submit()">
 					<option value=""><?php echo JText::_('JOPTION_SELECT_LANGUAGE'); ?></option>
-					<?php echo JHtml::_('select.options', JHtml::_('contentlanguage.existing', true, true), 'value', 'text', $this->state->get('filter.language')); ?>
+					<?php echo JHtml::_('select.options', JHtml::_('contentlanguage.existing', true, true), 'value', 'text', $this->app->getUserStateFromRequest('filter.language')); ?>
 				</select>
 			<?php endif; ?>
 		</div>
